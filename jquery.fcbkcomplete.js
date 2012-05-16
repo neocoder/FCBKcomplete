@@ -36,7 +36,8 @@
 
 (function( $, undefined ) {
 	$.fn.fcbkcomplete = function(opt) {
-		return this.queue( function() {
+
+		function makeFcbkcomplete(el) {
 			function init() {
 				createFCBK();
 				addInput(0);
@@ -83,7 +84,7 @@
 					}
 				}
 
-				var temp_elem = $('<'+element.get(0).tagName+' name="'+name+'" id="'+elemid+'" multiple="multiple" class="' + element.get(0).className + ' hidden">').data('cache', {});
+				var temp_elem = $('<select name="'+name+'" id="'+elemid+'" multiple="multiple" class="' + element.get(0).className + ' hidden">').data('cache', {});
 				
 				$.each(element.children('option'), function(i, option) {
 					option = $(option);
@@ -550,7 +551,7 @@
 			var deleting = 0;
 			var complete_hover = 1;
 
-			var element = $(this);
+			var element = el;
 			var elemid = element.attr("id");
 			var getBoxTimeout = 0;
 			
@@ -642,8 +643,48 @@
 			//cache initialization
 			json_cache_object.init();
 			cache.init();
-			
+
+			return {
+				element: element,
+				getItems: function(){
+					var items = [];
+					$('option', element).each(function(i, el){
+						items.push( $(el).val() );
+					});
+					return items;
+				}
+			};
+		}
+
+
+		if ( typeof opt == 'string' ) {
+
+			var el = $(this),
+				plugin = el.data('fcbkcomplete');
+
+			if ( plugin && plugin[opt] ) {
+				return plugin[opt]();
+			}
+
 			return this;
-		});
+
+		} else {
+			// create widget for each element mathched selector
+
+			this.each(function(){
+				var el = $(this);
+
+				var plugin = el.data('fcbkcomplete');
+				if ( !plugin ) {
+					plugin = makeFcbkcomplete(el);
+					plugin.element.data('fcbkcomplete', plugin);
+				}
+
+			});
+
+			return this;
+
+		}
+
 	};
 })(jQuery);

@@ -13,7 +13,7 @@
         <div id="text">
         </div>
         <form action="submit.php" method="POST" accept-charset="utf-8">
-            <select id="select3" name="select3">
+            <select id="select3" name="select3" class="fb-select">
                 <option value="sleep" class="selected">sleep</option>
                 <option value="sport">sport</option>
                 <option value="freestyle">freestyle</option>
@@ -22,9 +22,12 @@
             <br/>
             <input type="submit" value="Send">
         </form>
+
+        <button type="button" id="btn-get-items">get Items</button>
+
         <script type="text/javascript">
             jQuery(function($){
-                $("#select3").fcbkcomplete({
+                $(".fb-select").fcbkcomplete({
                     //json_url: "data.txt",
                     getData: function(text, done){                        
                         done([
@@ -45,6 +48,12 @@
                     newel: true,
                     select_all_text: "select"
                 });
+
+                $('#btn-get-items').click(function(){
+                    var items = $("#select3").fcbkcomplete('getItems');
+                    alert(items);
+                });
+
             });
 
         </script>

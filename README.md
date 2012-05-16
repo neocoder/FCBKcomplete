@@ -43,7 +43,8 @@ Changes by Alex L.
   * getData option
   * preserveClasses option
   * close.gif is no longer used
-  * changed styling a bit  
+  * changed styling a bit
+  * added getItems method
 
 ```javascript
 $("#select3").fcbkcomplete({
@@ -61,6 +62,16 @@ $("#select3").fcbkcomplete({
       ]);
   }  
 });
+```
+
+**you can use getItems method to get selected items:**
+
+```javascript
+$("#select3").fcbkcomplete({/*options*/});
+
+$("#select3").fcbkcomplete('getItems');
+
+// > ["Cupcake", "Froyo"]
 ```
 
 
