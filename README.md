@@ -37,11 +37,40 @@ Json format:
 
     [{"key": "key1", "value": "value1"}, {"key": "key2", "value": "value2"}]
 
+
+Changes by Alex L.
+----------------
+  * getData option
+  * preserveClasses option
+  * close.gif is no longer used
+  * changed styling a bit  
+
+```javascript
+$("#select3").fcbkcomplete({
+  getData: function(text, done){
+      // text - text that was entered to search by
+      // done - callback function that should be called with the retrieved data
+      done([
+          { key: "Cupcake", value: "Cupcake" },
+          { key: "Donut", value: "Donut" },
+          { key: "Eclair", value: "Eclair" },
+          { key: "Froyo", value: "Froyo" },
+          { key: "Gingerbread", value: "Gingerbread" },
+          { key: "Honeycomb", value: "Honeycomb" },
+          { key: "IceCreamSandwich", value: "IceCreamSandwich" }
+      ]);
+  }  
+});
+```
+
+
 Options
 -------
 
  * width            - element width (by default 512px)
  * json_url         - url to fetch json object
+ * getData          - callback function to get data. if defined json_url is not used. see usage above
+ * preserveClasses  - copy classes from the original element to the holder container (default: false)
  * cache            - use cache
  * height           - maximum number of element shown before scroll will apear
  * newel            - show typed text like a element

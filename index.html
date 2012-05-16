@@ -4,8 +4,7 @@
         <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
         <title>FCBKcomplete Demo</title>
         <link rel="stylesheet" href="style.css" type="text/css" media="screen" charset="utf-8" />
-        <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.6.min.js" type="text/javascript" charset="utf-8">
-        </script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
         <script src="jquery.fcbkcomplete.js" type="text/javascript" charset="utf-8">
         </script>
     </head>
@@ -24,18 +23,30 @@
             <input type="submit" value="Send">
         </form>
         <script type="text/javascript">
-            $(document).ready(function(){                
+            jQuery(function($){
                 $("#select3").fcbkcomplete({
-                    json_url: "data.txt",
-                    addontab: true,                   
+                    //json_url: "data.txt",
+                    getData: function(text, done){                        
+                        done([
+                            {key: "Cupcake", value: "Cupcake"},
+                            {key: "Donut", value: "Donut"},
+                            {key: "Eclair", value: "Eclair"},
+                            {key: "Froyo", value: "Froyo"},
+                            {key: "Gingerbread", value: "Gingerbread"},
+                            {key: "Honeycomb", value: "Honeycomb"},
+                            {key: "IceCreamSandwich", value: "IceCreamSandwich"}
+                        ])
+                    },
+                    addontab: true,
                     maxitems: 10,
                     input_min_size: 0,
                     height: 10,
                     cache: true,
                     newel: true,
-                    select_all_text: "select",
+                    select_all_text: "select"
                 });
             });
+
         </script>
         
         <div id="testme"></div>
