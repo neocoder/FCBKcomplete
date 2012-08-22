@@ -160,6 +160,7 @@
 				}
 				holder.children("li.bit-box.deleted").removeClass("deleted");
 				clear_feed(1);
+				complete.children(".default").fadeOut("fast");
 				return id;
 			}
 
@@ -194,15 +195,6 @@
 					isactive = true;
 					if (maxItems()) {
 						complete.fadeIn("fast");
-					}
-				});
-				
-				input.blur( function() {
-					isactive = false;
-					if (complete_hover) {
-						complete.fadeOut("fast");
-					} else {
-						input.focus();
 					}
 				});
 				
